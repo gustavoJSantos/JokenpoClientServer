@@ -1,10 +1,10 @@
-package client;
+package JokenpoClientServer.client;
 
 import java.io.ObjectInputStream;
 import java.net.Socket;
 import javax.swing.JTextArea;
 
-import util.Mensagem;
+import JokenpoClientServer.util.Mensagem;
 
 /**
  *
@@ -24,7 +24,7 @@ public class Escuta extends Thread {
     @Override
     public void run() {
         Mensagem msg;
-        Mensagem admin = new Mensagem("admin", "Bem vindo ao Jokenpo:\nPara jogar com a Lorena digite 1\nPara jogar contra outro jogador digite 2\nDigite sua resposta");
+        Mensagem admin = new Mensagem("admin", "Bem vindo ao chat!\n\nPara jogar Jokenpo use o comando !jogar");
         try {
             in = new ObjectInputStream(socket.getInputStream());
         

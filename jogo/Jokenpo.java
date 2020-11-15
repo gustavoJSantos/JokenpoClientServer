@@ -1,86 +1,50 @@
-package jogo;
+package JokenpoClientServer.jogo;
 
-import java.util.Scanner;
+import java.util.Random;
 
 public class Jokenpo {
-    public static void main(String[]args){
-        String player1 = "";
+
+    public String jogar(String nome1, String player1){
+        Random rand = new Random();
+        int jogada = rand.nextInt(3)+1;
         String player2 = "";
 
-        Scanner entrada = new Scanner(System.in);
-
-        boolean valido = false;
-
-        while(valido == false){
-            System.out.println("informe a entrada 1");
-            player1 = entrada.nextLine();
-
-            player1 = player1.toLowerCase();
-            
-            switch(player1){
-                case "pedra":
-                    valido = true;
-                break;
-                case "papel":
-                    valido = true;
-                break;
-                case "tesoura":
-                    valido = true;
-                break;
-                default:
-                    valido = false;
-                    System.out.println("caractere invalido, tente novamente");
-                break;
-            }
+        if(jogada == 1){
+            player2 = "pedra";
+        }else if(jogada == 2){
+            player2 = "papel";
+        }else if(jogada == 3){
+            player2 = "tesoura";
         }
+        return jogar(nome1, player1, "Admin", player2);
+        
+    }
 
-        valido = false;
-
-        while(valido == false){
-            System.out.println("informe a entrada 2");
-            player2 = entrada.nextLine();
-
-            player2 = player2.toLowerCase();
-            
-            switch(player2){
-                case "pedra":
-                    valido = true;
-                break;
-                case "papel":
-                    valido = true;
-                break;
-                case "tesoura":
-                    valido = true;
-                break;
-                default:
-                    valido = false;
-                    System.out.println("caractere invalido, tente novamente");
-                break;
-            }
-        }
-
+    public String jogar(String nome1, String player1, String nome2, String player2){
+        String vencedor = "Ocorreu um erro, por favor feche a aplicação e abra novamente!";
         if(player1.equals("pedra") && player2.equals("tesoura")){
-            System.out.println("player 1 venceu");
+            vencedor = nome1 + " venceu!";
         }else if(player2.equals("pedra") && player1.equals("tesoura")){
-            System.out.println("player 2 venceu");
+            vencedor = nome2 + " venceu!";
         }
 
         if(player1.equals("tesoura") && player2.equals("papel")){
-            System.out.println("player 1 venceu");
+            vencedor = nome1 + " venceu!";
         }else if(player2.equals("tesoura") && player1.equals("papel")){
-            System.out.println("player 2 venceu");
+            vencedor = nome2 + " venceu!";
         }
 
         if(player1.equals("papel") && player2.equals("pedra")){
-            System.out.println("player 1 venceu");
+            vencedor = nome1 + " venceu!";
         }else if(player2.equals("papel") && player1.equals("pedra")){
-            System.out.println("player 2 venceu");
+            vencedor = nome2 + " venceu!";
         }
 
-    }
-    /*public String jogo(){
-        
+        if(player1.equals(player2)){
+            vencedor = "Deu empate!";
+        }
 
-    }*/
+        return vencedor;
+    }
 
 }

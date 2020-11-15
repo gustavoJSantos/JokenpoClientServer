@@ -1,4 +1,4 @@
-package util;
+package JokenpoClientServer.util;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;

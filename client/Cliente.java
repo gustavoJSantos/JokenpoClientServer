@@ -1,10 +1,10 @@
-package client;
+package JokenpoClientServer.client;
 
 import java.awt.event.KeyEvent;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-import util.Mensagem;
+import JokenpoClientServer.util.Mensagem;
 
 /**
  *
@@ -12,6 +12,9 @@ import util.Mensagem;
  */
 
 public class Cliente extends javax.swing.JFrame {
+    boolean jogando = false;
+    boolean jogoAtivado = false;
+    int tipoDeJogo = 0;
     private static final long serialVersionUID = 1L;
     private Socket socket;
     private Escuta escuta;
@@ -161,14 +164,57 @@ public class Cliente extends javax.swing.JFrame {
     }
 
     private void txtEntradaKeyPressed(java.awt.event.KeyEvent evt) {
+        Mensagem msg;
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
-            Mensagem msg = new Mensagem(txtUsuario.getText(), txtEntrada.getText());
-
-            try {
-                out.writeObject(msg);
-                txtEntrada.setText("");
-            } catch (Exception e) {
-                System.out.println("Erro: " + e.getMessage());
+            String player = txtEntrada.getText();
+            if(jogando == false && jogoAtivado == false){
+                msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player);
+                try {
+                    out.writeObject(msg);
+                    if(player.equals("!jogar")){
+                        jogoAtivado = true;
+                        txtHistorico.append("Bem vindo ao Jokenpo:\nPara jogar com a CPU digite 1\nPara jogar contra outro jogador digite 2\nPara cancelar o jogo digite qualquer outro numero\nDigite sua resposta:\n");
+                    }
+                    txtEntrada.setText("");
+                } catch (Exception e) {
+                    System.out.println("Erro: " + e.getMessage());
+                }
+            }else if(jogoAtivado == true && jogando == false){
+                try{
+                    tipoDeJogo = Integer.parseInt(player);
+                    if(tipoDeJogo == 1 || tipoDeJogo == 2){
+                        jogando = true;
+                        jogoAtivado = false;
+                        txtHistorico.append("Informe sua jogada\n Pedra, Papel ou Tesoura?\n");
+                    }else{
+                        jogando = false;
+                        jogoAtivado = false;
+                    }
+                    txtEntrada.setText("");
+                }catch (Exception e) {
+                    txtHistorico.append("admin > caractere invalido, tente novamente\n");
+                }
+            }else{
+                player = player.toLowerCase();
+                
+                switch(player){
+                    case "pedra":
+                    case "papel":
+                    case "tesoura":
+                        msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player);
+                        try {
+                            out.writeObject(msg);
+                            tipoDeJogo = 0;
+                            txtEntrada.setText("");
+                            jogando = false;
+                        } catch (Exception e) {
+                            System.out.println("Erro: " + e.getMessage());
+                        }
+                    break;
+                    default:
+                        txtHistorico.append("admin > caractere invalido, tente novamente\n");
+                    break;
+                }
             }
         }
     }
