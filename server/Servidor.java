@@ -14,6 +14,13 @@ public class Servidor {
     private static String player1 = "";
     private static String nome2 = "";
     private static String player2 = "";
+    private static String time1 = "";
+    private static String time2 = "";
+    private static int jogosFeitos = 0;
+    private static int vitoriaAzul = 0;
+    private static int vitoriaVerm = 0;
+    private static int empates = 0;
+    private static int vitoriaNPC = 0;
 
     public static void main(String[] args) {
         final int PORTA = 9876;
@@ -67,11 +74,80 @@ public class Servidor {
         player2 = newPlayer;
     }
 
+    public static String getTime1() {
+        return time1;
+    }
+
+    public static void setTime1(String time) {
+        time1 = time;
+    }
+
+    public static String getTime2() {
+        return time2;
+    }
+
+    public static void setTime2(String time) {
+        time2 = time;
+    }
+
+    public static boolean timesIguais(){
+        if(time1.equals(time2)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     public static void clear(){
         nome1 = "";
         player1 = "";
         nome2 = "";
         player2 = "";
+        time1 = "";
+        time2 = "";
     }
+
+
+    public static void setVencedor(String time) {
+        Servidor.jogosFeitos += 1;
+        switch(time){
+            case "azul":
+                vitoriaAzul += 1;
+            break;
+            case "vermelho":
+                vitoriaVerm += 1;
+            break;
+            case "NPC":
+                vitoriaNPC += 1;
+            break;
+            case "empate":
+                empates += 1;
+            break;
+            default:
+            break;
+        }
+    }
+
+    public static int getJogosFeitos() {
+        return jogosFeitos;
+    }
+
+    public static int getVitoriaAzul() {
+        return vitoriaAzul;
+    }
+
+    public static int getVitoriaVerm() {
+        return vitoriaVerm;
+    }
+
+    public static int getEmpates() {
+        return empates;
+    }
+
+    public static int getVitoriaNPC() {
+        return vitoriaNPC;
+    }
+
+    
 
 }

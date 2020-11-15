@@ -2,9 +2,11 @@ package JokenpoClientServer.jogo;
 
 import java.util.Random;
 
+import JokenpoClientServer.util.Mensagem;
+
 public class Jokenpo {
 
-    public String jogar(String nome1, String player1){
+    public Mensagem jogar(Mensagem msg){
         Random rand = new Random();
         int jogada = rand.nextInt(3)+1;
         String player2 = "";
@@ -16,32 +18,42 @@ public class Jokenpo {
         }else if(jogada == 3){
             player2 = "tesoura";
         }
-        return jogar(nome1, player1, "Admin", player2);
+        
+        Mensagem msg2 = new Mensagem(0, "Admin", player2, "NPC");
+        return jogar(msg, msg2);
         
     }
 
-    public String jogar(String nome1, String player1, String nome2, String player2){
-        String vencedor = "Ocorreu um erro, por favor feche a aplicação e abra novamente!";
-        if(player1.equals("pedra") && player2.equals("tesoura")){
-            vencedor = nome1 + " venceu!";
-        }else if(player2.equals("pedra") && player1.equals("tesoura")){
-            vencedor = nome2 + " venceu!";
+    public Mensagem jogar(Mensagem msg1, Mensagem msg2){
+        Mensagem vencedor = new Mensagem(0, "Admin", "Ocorreu um erro, por favor feche a aplicação e abra novamente!", "nenhum");
+        if(msg1.getTexto().equals("pedra") && msg2.getTexto().equals("tesoura")){
+            vencedor = msg1;
+            vencedor.setTexto(msg1.getNome() + " venceu!");
+        }else if(msg2.getTexto().equals("pedra") && msg1.getTexto().equals("tesoura")){
+            vencedor = msg2;
+            vencedor.setTexto(msg2.getNome() + " venceu!");
         }
 
-        if(player1.equals("tesoura") && player2.equals("papel")){
-            vencedor = nome1 + " venceu!";
-        }else if(player2.equals("tesoura") && player1.equals("papel")){
-            vencedor = nome2 + " venceu!";
+        if(msg1.getTexto().equals("tesoura") && msg2.getTexto().equals("papel")){
+            vencedor = msg1;
+            vencedor.setTexto(msg1.getNome() + " venceu!");
+        }else if(msg2.getTexto().equals("tesoura") && msg1.getTexto().equals("papel")){
+            vencedor = msg2;
+            vencedor.setTexto(msg2.getNome() + " venceu!");
         }
 
-        if(player1.equals("papel") && player2.equals("pedra")){
-            vencedor = nome1 + " venceu!";
-        }else if(player2.equals("papel") && player1.equals("pedra")){
-            vencedor = nome2 + " venceu!";
+        if(msg1.getTexto().equals("papel") && msg2.getTexto().equals("pedra")){
+            vencedor = msg1;
+            vencedor.setTexto(msg1.getNome() + " venceu!");
+        }else if(msg2.getTexto().equals("papel") && msg1.getTexto().equals("pedra")){
+            vencedor = msg2;
+            vencedor.setTexto(msg2.getNome() + " venceu!");
         }
 
-        if(player1.equals(player2)){
-            vencedor = "Deu empate!";
+        if(msg1.getTexto().equals(msg2.getTexto())){
+            vencedor = msg1;
+            vencedor.setTexto("Deu empate!");
+            vencedor.setTime("empate");
         }
 
         return vencedor;

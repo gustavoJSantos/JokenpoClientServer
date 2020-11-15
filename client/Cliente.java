@@ -14,7 +14,9 @@ import JokenpoClientServer.util.Mensagem;
 public class Cliente extends javax.swing.JFrame {
     boolean jogando = false;
     boolean jogoAtivado = false;
+    boolean escolhaTime = false;
     int tipoDeJogo = 0;
+    String time = "";
     private static final long serialVersionUID = 1L;
     private Socket socket;
     private Escuta escuta;
@@ -167,8 +169,8 @@ public class Cliente extends javax.swing.JFrame {
         Mensagem msg;
         if(evt.getKeyCode() == KeyEvent.VK_ENTER){
             String player = txtEntrada.getText();
-            if(jogando == false && jogoAtivado == false){
-                msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player);
+            if(jogando == false && jogoAtivado == false && escolhaTime == false){
+                msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player, time);
                 try {
                     out.writeObject(msg);
                     if(player.equals("!jogar")){
@@ -183,9 +185,9 @@ public class Cliente extends javax.swing.JFrame {
                 try{
                     tipoDeJogo = Integer.parseInt(player);
                     if(tipoDeJogo == 1 || tipoDeJogo == 2){
-                        jogando = true;
                         jogoAtivado = false;
-                        txtHistorico.append("Informe sua jogada\n Pedra, Papel ou Tesoura?\n");
+                        escolhaTime = true;
+                        txtHistorico.append("Escolha um time, Azul ou Vermelho?\nPara cancelar escreva 'cancelar'\n");
                     }else{
                         jogando = false;
                         jogoAtivado = false;
@@ -194,6 +196,31 @@ public class Cliente extends javax.swing.JFrame {
                 }catch (Exception e) {
                     txtHistorico.append("admin > caractere invalido, tente novamente\n");
                 }
+            }else if(escolhaTime == true){
+                player = player.toLowerCase();
+                time = player;
+                switch(time){
+                    case "azul":
+                    case "vermelho":
+                        jogando = true;
+                        escolhaTime = false;
+                        txtHistorico.append("Informe sua jogada\n Pedra, Papel ou Tesoura?\n");
+                    break;
+                    case "cancelar":
+                        jogando = false;
+                        jogoAtivado = false;
+                        escolhaTime = false;
+                        tipoDeJogo = 0;
+                        time = "";
+                        txtHistorico.append("Jogo cancelado!\n");
+                    break;
+                    default:
+                        txtHistorico.append("admin > caractere invalido, tente novamente\n");
+                    break;
+                }
+
+                txtEntrada.setText("");
+
             }else{
                 player = player.toLowerCase();
                 
@@ -201,7 +228,7 @@ public class Cliente extends javax.swing.JFrame {
                     case "pedra":
                     case "papel":
                     case "tesoura":
-                        msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player);
+                        msg = new Mensagem(tipoDeJogo, txtUsuario.getText(), player, time);
                         try {
                             out.writeObject(msg);
                             tipoDeJogo = 0;

@@ -11,12 +11,13 @@ public class Mensagem implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private int tipo;
-    private String nome, texto;
+    private String nome, texto, time;
 
-    public Mensagem(int tipo, String nome, String texto) {
+    public Mensagem(int tipo, String nome, String texto, String time) {
         this.tipo = tipo;
         this.nome = nome;
         this.texto = texto;
+        this.time = time;
     }
     public Mensagem(String nome, String texto) {
         this.nome = nome;
@@ -41,6 +42,13 @@ public class Mensagem implements Serializable {
 
     public int getTipo(){
         return tipo;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+    public String getTime() {
+        return time;
     }
 
 }
