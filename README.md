@@ -15,6 +15,6 @@ Faça um programa em Java, onde teremos dois tipos de jogos:
 O programa deve determinar sempre quem foi o vencedor entre o usuário e o computador e entre os dois jogadores, e informar aos usuários em cada rodada e ao finalizar a partida o número de vitórias, derrotas e empates. Para terminar o programa, será necessário realizar uma maneira de fazê-lo parar.
 
 # Desenvolvimento:
-Como o professor ensinou em sala como fazer um servidor se comunicar com clientes estilo "Sala de bate papo" onde existem varios clientes conversando entre si em um unico grupo, acordei com o professor de manter o estilo de chat e adicionar a função jogo, onde quando o usuário digita "!jogo" ele informa se é do time vermelho ou azul. Todas as vitorias são contasbilizadas no servidor para ou o time vermelho, ou o time azul, ou o servidos, ou empates.
+Como o professor ensinou em sala como fazer um servidor se comunicar com clientes estilo "Sala de bate papo" onde existem varios clientes conversando entre si em um unico grupo, acordei com o professor de manter o estilo de chat e adicionar a função jogo, onde quando o usuário digita "!jogo" ele informa se é do time vermelho ou azul. Todas as vitorias são contabilizadas no servidor para ou o time vermelho, ou o time azul, ou o servidos, ou empates.
 
 Para ver os resultados é necessário digitar "!resultados" no chat.
