@@ -11,7 +11,7 @@ import JokenpoClientServer.jogo.Jokenpo;
 
 /**
  *
- * @author Emerson S. Paduan <emerson@paduan.pro.br>
+ * @author Gustavo Santos <gustavojspro@hotmail.com>
  */
 
 public class Atende extends Thread {

@@ -4,6 +4,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ *
+ * @author Gustavo Santos <gustavojspro@hotmail.com>
+ */
+
 public class Comunicacao {
     private ObjectOutputStream out;
     private ObjectInputStream in;

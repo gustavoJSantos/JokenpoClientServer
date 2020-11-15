@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 /**
  *
- * @author Emerson S. Paduan <emerson@paduan.pro.br>
+ * @author Gustavo Santos <gustavojspro@hotmail.com>
  */
 
 public class Mensagem implements Serializable {

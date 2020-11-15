@@ -8,7 +8,7 @@ import JokenpoClientServer.util.Mensagem;
 
 /**
  *
- * @author Emerson S. Paduan <emerson@paduan.pro.br>
+ * @author Gustavo Santos <gustavojspro@hotmail.com>
  */
 
 public class Escuta extends Thread {

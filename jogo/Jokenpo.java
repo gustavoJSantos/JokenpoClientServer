@@ -4,6 +4,11 @@ import java.util.Random;
 
 import JokenpoClientServer.util.Mensagem;
 
+/**
+ *
+ * @author Gustavo Santos <gustavojspro@hotmail.com>
+ */
+
 public class Jokenpo {
 
     public Mensagem jogar(Mensagem msg){
