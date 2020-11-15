@@ -24,7 +24,7 @@ public class Escuta extends Thread {
     @Override
     public void run() {
         Mensagem msg;
-        Mensagem admin = new Mensagem("admin", "Bem vindo ao chat!\n\nPara jogar Jokenpo use o comando !jogar");
+        Mensagem admin = new Mensagem("admin", "Bem vindo ao chat!\n\nPara jogar Jokenpo use o comando !jogar\nPara ver os resultados das equipes use o comando !resultados");
         try {
             in = new ObjectInputStream(socket.getInputStream());
         
